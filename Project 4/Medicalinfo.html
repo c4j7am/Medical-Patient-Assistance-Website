@@ -3,167 +3,176 @@
   <head>
     <meta charset="UTF-8">
     <title>Medical Information</title>
+    <style>
+     
+     
+      body {
+        background-color: mintcream;
+      }
+      form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+      }
+      h1 {
+        text-align: center;
+        color: #008080;
+      }
+      input[type="text"], input[type="date"], input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      input[type="submit"], input[type="reset"] {
+        background-color: #008080;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+      }
+      input[type="submit"]:hover, input[type="reset"]:hover {
+        background-color: #006666;
+      }
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .delete-button {
+        background-color: #cc0000;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .delete-button:hover {
+        background-color: #990000;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="Medicalinfo.css">
   </head>
   <body>
     <h1>Medical Information</h1>
-    
     <form id="medical-form">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required><br><br>
-
-      <label for="sex">Sex:</label>
-      <select id="sex" name="sex">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select><br><br>
-
-      <label for="birthday">Birthday:</label>
-      <input type="date" id="birthday" name="birthday" required><br><br>
-
-      <label for="address">Address:</label>
-      <textarea id="address" name="address" required></textarea><br><br>
-
-      <label for="social-security">Social Security:</label>
-      <input type="text" id="social-security" name="social-security" required><br><br>
-
-      <label for="contact-info">Contact Info:</label>
-      <textarea id="contact-info" name="contact-info" required></textarea><br><br>
-
-      <button type="submit" id="save-button">Save</button>
-      <button type="button" id="clear-button">Clear</button>
+      <div class="row">
+        <div class="column">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="sex">Sex:</label>
+          <input type="text" id="sex" name="sex" required>
+          <label for="birthday">Birthday:</label>
+          <input type="date" id="birthday" name="birthday" required>
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address" required>
+          <label for="social-security">Social Security:</label>
+          <input type="text" id="social-security" name="social-security" required>
+        </div>
+        <div class="column">
+          <label for="contact-info">Contact Info:</label>
+          <input type="text" id="contact-info" name="contact-info" required>
+          <label for="height">Height (cm):</label>
+          <input type="number" id="height" name="height" required>
+          <label for="weight">Weight (lbs):</label>
+          <input type="number" id="weight" name="weight" required>
+          <label for="allergies">Allergies:</label> <input type="text" id="allergies" name="allergies" required>
+          <label for="conditions">Conditions:</label>
+          <input type="text" id="conditions" name="conditions" required>
+        </div>
+      </div>
+      <input type="submit" value="Add">
+      <input type="reset" value="Reset">
     </form>
-    
-    <table id="medical-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Sex</th>
-          <th>Birthday</th>
-          <th>Address</th>
-          <th>Social Security</th>
-          <th>Contact Info</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-    
+    <div class="container" id="medical-list"></div>
     <script>
-      var medicalInfo = JSON.parse(localStorage.getItem("medicalInfo")) || [];
-
-      var medicalForm = document.getElementById("medical-form");
-      var medicalTableBody = document.getElementById("medical-table").getElementsByTagName("tbody")[0];
-      var saveButton = document.getElementById("save-button");
-      var clearButton = document.getElementById("clear-button");
-
-      displayMedicalInfo();
-
-      medicalForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-
+      // function to add medical information to the list
+      function addMedical() {
         var name = document.getElementById("name").value;
         var sex = document.getElementById("sex").value;
         var birthday = document.getElementById("birthday").value;
         var address = document.getElementById("address").value;
         var socialSecurity = document.getElementById("social-security").value;
         var contactInfo = document.getElementById("contact-info").value;
-
-        var medicalData = {
-          "name": name,
-          "sex": sex,
-          "birthday": birthday,
-          "address": address,
-          "socialSecurity": socialSecurity,
-          "contactInfo": contactInfo
+        var height = document.getElementById("height").value;
+        var weight = document.getElementById("weight").value;
+        var allergies = document.getElementById("allergies").value;
+        var conditions = document.getElementById("conditions").value;
+        var medical = {
+          name: name,
+          sex: sex,
+          birthday: birthday,
+          address: address,
+          socialSecurity: socialSecurity,
+          contactInfo: contactInfo,
+          height: height,
+          weight: weight,
+          allergies: allergies,
+          conditions: conditions
         };
+        var medicalList = JSON.parse(localStorage.getItem("medicalList")) || [];
+        medicalList.push(medical);
+        localStorage.setItem("medicalList", JSON.stringify(medicalList));
+        displayMedical();
+      }
 
-        if (saveButton.textContent === "Save") {
-          medicalInfo.push(medicalData);
-        } else {
-          var index = saveButton.getAttribute("data-index");
-          medicalInfo[index] = medicalData;
+      // function to display medical information list
+      function displayMedical() {
+        var medicalList = JSON.parse(localStorage.getItem("medicalList")) || [];
+        var medicalListHTML = "";
+        for (var i = 0; i < medicalList.length; i++) {
+          medicalListHTML += "<div class='card'>";
+          medicalListHTML += "<h2>" + medicalList[i].name + "</h2>";
+          medicalListHTML += "<p>Sex: " + medicalList[i].sex + "</p>";
+          medicalListHTML += "<p>Birthday: " + medicalList[i].birthday + "</p>";
+          medicalListHTML += "<p>Address: " + medicalList[i].address + "</p>";
+          medicalListHTML += "<p>Social Security: " + medicalList[i].socialSecurity + "</p>";
+          medicalListHTML += "<p>Contact Info: " + medicalList[i].contactInfo + "</p>";
+          medicalListHTML += "<p>Height: " + medicalList[i].height + "</p>";
+          medicalListHTML += "<p>Weight: " + medicalList[i].weight + "</p>";
+          medicalListHTML += "<p>Allergies: " + medicalList[i].allergies + "</p>";
+          medicalListHTML += "<p>Conditions: " + medicalList[i].conditions + "</p>";
+          medicalListHTML += "<button class='delete-button' onclick='deleteMedical(" + i + ")'>Delete</button>";
+          medicalListHTML += "</div>";
         }
+        document.getElementById("medical-list").innerHTML = medicalListHTML;
+      }
 
-        localStorage.setItem("medicalInfo", JSON.stringify(medicalInfo));
-        displayMedicalInfo();
-        resetForm();
-      });
+      // function to delete medical information from the list
+      function deleteMedical(index) {
+        var medicalList = JSON.parse(localStorage.getItem("medicalList"));
+        medicalList.splice(index, 1);
+        localStorage.setItem("medicalList", JSON.stringify(medicalList));
+        displayMedical();
+      }
 
-      clearButton.addEventListener("click", function() {
-        resetForm();
-      });
+      // display existing medical information on page load
+      displayMedical();
 
-      function displayMedicalInfo() {
-        medicalTableBody.innerHTML = "";
-        for (var i = 0; i < medicalInfo.length; i++) {
-var tr = document.createElement("tr");
-var nameTd = document.createElement("td");
-      nameTd.textContent = medicalInfo[i].name;
-      tr.appendChild(nameTd);
-
-      var sexTd = document.createElement("td");
-      sexTd.textContent = medicalInfo[i].sex;
-      tr.appendChild(sexTd);
-
-      var birthdayTd = document.createElement("td");
-      birthdayTd.textContent = medicalInfo[i].birthday;
-      tr.appendChild(birthdayTd);
-
-      var addressTd = document.createElement("td");
-      addressTd.textContent = medicalInfo[i].address;
-      tr.appendChild(addressTd);
-
-      var socialSecurityTd = document.createElement("td");
-      socialSecurityTd.textContent = medicalInfo[i].socialSecurity;
-      tr.appendChild(socialSecurityTd);
-
-      var contactInfoTd = document.createElement("td");
-      contactInfoTd.textContent = medicalInfo[i].contactInfo;
-      tr.appendChild(contactInfoTd);
-
-      var actionsTd = document.createElement("td");
-      var editButton = document.createElement("button");
-      editButton.textContent = "Edit";
-      editButton.setAttribute("data-index", i);
-      editButton.addEventListener("click", function() {
-        var index = this.getAttribute("data-index");
-        var medicalData = medicalInfo[index];
-        document.getElementById("name").value = medicalData.name;
-        document.getElementById("sex").value = medicalData.sex;
-        document.getElementById("birthday").value = medicalData.birthday;
-        document.getElementById("address").value = medicalData.address;
-        document.getElementById("social-security").value = medicalData.socialSecurity;
-        document.getElementById("contact-info").value = medicalData.contactInfo;
-        saveButton.textContent = "Update";
-        saveButton.setAttribute("data-index", index);
-      });
-      actionsTd.appendChild(editButton);
-
-      var deleteButton = document.createElement("button");
-      deleteButton.textContent = "Delete";
-      deleteButton.setAttribute("data-index", i);
-      deleteButton.addEventListener("click", function() {
-        var index = this.getAttribute("data-index");
-        medicalInfo.splice(index, 1);
-        localStorage.setItem("medicalInfo", JSON.stringify(medicalInfo));
-        displayMedicalInfo();
-      });
-      actionsTd.appendChild(deleteButton);
-
-      tr.appendChild(actionsTd);
-
-      medicalTableBody.appendChild(tr);
-    }
-  }
-
-  function resetForm() {
-    medicalForm.reset();
-    saveButton.textContent = "Save";
-    saveButton.removeAttribute("data-index");
-  }
+      // add event listener to the form submit button
+      document.getElementById("medical-form").addEventListener("submit", function(event) {
+event.preventDefault();
+addMedical();
+document.getElementById("medical-form").reset();
+});
 </script>
-</body>
+
+  </body>
 </html>
 ```
