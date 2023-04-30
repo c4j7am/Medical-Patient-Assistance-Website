@@ -1,3 +1,9 @@
+
+
+/* Style sheet for Medicalinfo.html */
+
+
+/* Create background color */
 body {
     background-color: #c8e6c9;
   }
@@ -15,6 +21,9 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
   
+
+  /* Style the input boxes and action buttons */
+
   input[type=text], select {
     padding: 0.5rem;
     border-radius: 0.5rem;
