@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+  
+  
+  <!-- This file is the home page
+  
+  Build a website titled "Medivance" referencing a w3schools html template -->
+  
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -13,6 +19,9 @@
   </head>
   <body> 
 
+    
+    <!-- This section is the top menu formatted as "Login | About | What We Do | Contact" -->
+    
     <section class="navigation w3-metro-light-blue w3-container">
       <button onclick="goToTop()" id="back-to-top" title="Go to top"><i class="fa fa-toggle-up"></i></button>
       <nav class="nav-container">
@@ -23,23 +32,25 @@
           <span style="float: right;" onclick="toggleMobileNavigation()">&#9776;</span>
         </div>
         <div class="links">
-          <p><a href="Login.html">LOG IN</a>-</p>
+          <p><a href="Login.html">LOGIN </a>-</p>
           <a href="#about" >ABOUT</a>-
-          <a href="#consulting" >CONSULTING</a>-
+          <a href="#consulting" >WHAT WE DO</a>-
           <a href="#contact" >CONTACT</a>            
         </div>
         <div id="mobile-sidenav" class="mobile-links w3-sand">
-          <p><a href="Login.html">LOG IN</a></p>
+          <p><a href="Login.html">LOGIN - </a></p>
           
           <a href="javascript:void(0)" class="closebtn w3-round" onclick="toggleMobileNavigation()">&times;</a>
           <a href="#about" onclick="toggleMobileNavigation()">ABOUT</a>
           <a href="#consulting" onclick="toggleMobileNavigation()">CONSULTING</a>
         
-        
         </div>
       </nav>
     </section>
 
+    
+    <!-- Schedule an appointment button -->
+    
     <section class="hero w3-padding-large w3-container">
       <h1 style="display: inline;"><span><i class="fa fa-check-square-o"></i></span>Let the Doc understand you</h1>
     
@@ -47,6 +58,7 @@
     </section>
 
   
+    <!-- "Our Mission" section (writing section which gives personal dialogue) -->
 
     <section class="about w3-padding-large w3-container" id="about">
       <div class="content container w3-round-large">
@@ -64,6 +76,9 @@
         
       </div>
 
+      
+      <!-- "Doctors" section (shows pictures and pseudocontacts) -->
+      
       <div class="leadership content container w3-margin-top w3-round-large">
         <h3 style="text-align: center;">- Doctors -</h3>
         <div class="l-cards">
@@ -95,25 +110,32 @@
       </div>
     </section>
 
+                
+    <!-- "Navigate Your Account" section (leads to Medicalinfo.html, insurance info page.html, and #contact) -->
+       
     <section class="testimonials w3-container w3-panel" style="padding: 50px;">
       <h2 style="text-align: center;">- Navigate Your Account -</h2>
       <div class="slideshow-container">
 
+      <!-- First tab which leads to the Medical information page -->
       <div class="mySlides">
         <p><em>Access your Medical History Now</em></p>
         <p class="author"><strong>Link with the title "My Medical History"</strong></p>
       </div>
 
+      <!-- Second tab which leads to the Insurance information page -->
       <div class="mySlides">
         <p><em>Access your Billing and Insurance Information Now</em></p>
         <p class="author"><strong>Link with the title "My Billing and Insurance"</strong></p>
       </div>
 
+      <!-- Third tab which leads to the Customer Support on this home page -->
       <div class="mySlides">
         <p><q><em>Access Customer Support Now</em></p>
         <p class="author"><strong>Link with the title "Customer Support"</strong></p>
       </div>
 
+      <!-- Make the navigation feature functional -->
       <a class="prev" onclick="plusSlides(-1)">❮</a>
       <a class="next" onclick="plusSlides(1)">❯</a>
 
@@ -126,6 +148,9 @@
       </div>      
     </section>
 
+                
+    <!-- "What we do" section (writing section which gives a summary of the website's functions -->            
+    
     <section id="consulting" class="w3-container container consulting content">
       <h2 style="text-align: center;">- What we do -</h2>
       <div class="c-card w3-margin-top">
@@ -138,15 +163,15 @@
         <p>We centralize relevant insurance information to ease the financial side of your health</p>
       </div>
       <div class="c-card  c-card-right w3-margin-top">
-        <p>We have online appointment scheduling</p>
+        <p>We offer online appointment scheduling</p>
       </div>
       <div class="c-card w3-margin-top">
         <p>We provide ready searches for medical information - Just in case you forgot</p>
       </div>
-      <div class="c-card  c-card-right w3-margin-top">
-        <p>We conduct online prescriptions which eliminate medicine-related miscommunication</p>
-      </div>
     </section>
+
+                
+    <!-- "Contact Customer Support" section (gives the pseudocompany's pseudocontacts)-->
 
     <section class="contact w3-container contact" id="contact">
       <div class="short-contact">
@@ -156,13 +181,13 @@
           <i class="fa fa-envelope"></i><span style="margin-left:10px;"><a href="Medivance@gmail.com">Medivance@gmail.com</a></span><br>
           <i class="fa fa-phone-square"></i><span style="margin-left:10px;"><a href="+1 7132218000">+1 7132218000 </a></span><br>
         </div>
-        
-        </div>
+       </div>
 
-
-
-
-
+      
+  <!-- Using JavaScript...
+      
+  Make goToTop button, scroll, and showSlides functional -->
+      
   <script async>
       const backToTop = document.getElementById("back-to-top");
 
