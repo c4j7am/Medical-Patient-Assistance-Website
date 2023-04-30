@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
+  
+  <!-- This is the Appointment Scheduler page -->
+  
   <head>
     <title>Appointment Scheduler</title>
   </head>
   <body>
+    
+    <!-- Format title and give input boxes for Name, Email, Date, and Time -->
     <h1>Appointment Scheduler</h1>
     <form>
       <label for="name">Name:</label>
@@ -14,6 +19,8 @@
       <input type="date" id="date" name="date" required><br><br>
       <label for="time">Time:</label>
       <input type="time" id="time" name="time" required><br><br>
+      
+      <!-- Place submit and clear buttons -->
       <button type="button" id="submit-btn" onclick="setAppointment()">Set Appointment</button>
       <button type="button" id="reset-btn" onclick="resetForm()">Clear Form</button>
     </form>
