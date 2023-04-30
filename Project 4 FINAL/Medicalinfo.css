@@ -1,6 +1,5 @@
 
-
-/* Style sheet for Medicalinfo.html */
+/* Style sheet for Medicalinfo.html | made by Nathan Spears | completed April 30, 2023 */
 
 
 /* Create background color */
@@ -45,7 +44,7 @@ body {
   input[type=submit]:hover, input[type=reset]:hover {
     background-color: #3e8e41;
   }
-  
+  /* The color and size of the delete-button */
   .delete-button {
     background-color: #f44336;
     color: white;
@@ -55,7 +54,8 @@ body {
     margin-top: 1rem;
     cursor: pointer;
   }
-  
+
+  /* The background color for the delete-button:hover */
   .delete-button:hover {
     background-color: #f44336;
   }
