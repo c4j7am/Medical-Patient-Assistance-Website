@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
+  
+  
+  <!-- This is the Medical Information page -->
+  
   <head>
     <meta charset="UTF-8">
     <title>Medical Information</title>
     <style>
-     
-     
+      
       body {
         background-color: mintcream;
       }
@@ -71,6 +74,10 @@
   </head>
   <body>
     <h1>Medical Information</h1>
+    
+    
+    <!-- Format and give input boxes for Name, Sex, Birthday, Address, SSN, height, weight, allergies, and conditions -->
+    
     <form id="medical-form">
       <div class="row">
         <div class="column">
@@ -97,10 +104,14 @@
           <input type="text" id="conditions" name="conditions" required>
         </div>
       </div>
+      
+      <!-- Place submit and reset buttons -->
       <input type="submit" value="Add">
       <input type="reset" value="Reset">
     </form>
     <div class="container" id="medical-list"></div>
+    
+    <!-- Using JavaScript... -->
     <script>
       // function to add medical information to the list
       function addMedical() {
